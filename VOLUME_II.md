@@ -5,9 +5,7 @@
    
 4)⭐ In Java inheritance, the parent class code is used in the child class.
 
-5) → for example 
-   ----> public class BusinessFlight extends Flight { ... }
-[!NOTE]
+5) $${\color{blue}\text{Your text here}}$$
    for example 
    ----> public class BusinessFlight extends Flight { ... }
 
