@@ -3,7 +3,7 @@
 1) parents class (Flight)---> the code of parents class is used in child class ..
 2) child class (BusinessFlight) ---> where the parents class code is directly used ..
    
-4)* ** In Java inheritance, the parent class code is used in the child class.** *
+4)⭐ In Java inheritance, the parent class code is used in the child class.
 
-5) ** for example **
-   ----> * ** public class BusinessFlight extends Flight { ... }** *
+5) → for example 
+   ----> public class BusinessFlight extends Flight { ... }
