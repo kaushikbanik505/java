@@ -7,3 +7,4 @@
 
 5) → for example 
    ----> public class BusinessFlight extends Flight { ... }
+<font color="blue"><b>Key Concept:</b> Paste your text here.</font>
