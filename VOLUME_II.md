@@ -1,5 +1,4 @@
                                                      ## DAY--1 
-                                                     [Back to Table of Contents](./README.md)
 ## OOP Hierarchy: Building Flexible Systems with Inheritance
 
 --> Inheritance is the OOP concept where a new class (the subclass or child class) is created by basing it on an existing class (the superclass or parent class).
@@ -30,3 +29,7 @@ Role: It passes the basic, common properties (like flightNumber, origin) up to t
 $${\color{blue}\text{The @Override annotation is used to signal this intent to the compiler.}}$$
 
 Inside the overridden method, you can still call the original parent method using super.methodName() to reuse the core logic while adding new rules around it.
+
+  [Back to Table of Contents](./README.md)
+
+                                                  DAY/2 🧑‍🏫
