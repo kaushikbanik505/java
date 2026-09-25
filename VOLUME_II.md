@@ -7,4 +7,7 @@
 
 5) → for example 
    ----> public class BusinessFlight extends Flight { ... }
-<font color="blue"><b>Key Concept:</b> Paste your text here.</font>
+   
+<font color="blue"><b>Key Concept:</b> 5) → for example 
+   ----> public class BusinessFlight extends Flight { ... }
+   </font>
