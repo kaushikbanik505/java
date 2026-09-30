@@ -196,7 +196,7 @@ Dog barks
 
 7. 
 
-# Implementation Example: VoyexaApp.java
+# Implementation Example: VoyexaApp2.java
 
 When we create parent references like `Animal myDog` and `Animal myCat`, Java reuses the parent structure while executing the specific child methods at runtime.
 
