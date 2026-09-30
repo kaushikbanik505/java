@@ -179,7 +179,6 @@ When you compile and run the program above, it will yield the following result (
 Dog barks
 ```
 
-## DAY -- 4
 
 # OOP Pillars: Code Reusability and Polymorphism
 
