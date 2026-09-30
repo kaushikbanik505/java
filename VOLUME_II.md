@@ -112,4 +112,69 @@ When you compile and run the program above, it will yield the following result:
 Name: Kaushik
 Age: 25
 ```
-    
+
+# OOP Pillars: Building Dynamic Systems with Polymorphism
+
+--> The third pillar of OOP, **Polymorphism** (meaning "many forms"), becomes your hero's ultimate weapon. It allows you to write one piece of generalized code that can seamlessly and correctly interact with objects of different classes that share a common heritage.
+
+1. Polymorphism works because of the **"is-a" relationship** established by inheritance.
+
+2. **Method Overriding in Action: Dynamic Dispatch** 
+The magic happens when you call a method that has been overridden by the child class.
+
+4) <span style="color:#268bd2">⭐ In Java polymorphism, runtime decision determines which overridden method gets executed.</span>
+
+5. for example ----> `public class Dog extends Animal { ... }`
+
+6) <span style="color:#859900">⭐ The biggest advantage of Method Overriding is achieving Runtime Polymorphism (Dynamic Method Dispatch).</span>
+
+7. 
+
+# Implementation Example: Method Overriding
+
+When a child object (a `Dog`) calls a method that exists in both the parent and child classes, Java dynamically selects the child's implementation at runtime.
+
+The `@Override` annotation is used inside the child's class to explicitly tell the compiler that we are redefining a parent method.
+
+Role: It completely overrides the parent class method with a specific, custom implementation tailored to the child class.
+
+### 📝 Source Code
+
+```java
+// Parent Class
+class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+// Child Class (inherits from Animal)
+class Dog extends Animal {
+    // Overriding the parent method to give it a specific behavior
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Execution Class
+public class Main {
+    public static void main(String[] args) {
+        // Creating a child object
+        Dog myDog = new Dog();
+        
+        // This will call the OVERRIDDEN version inside the Dog class
+        myDog.makeSound(); 
+    }
+}
+```
+
+---
+
+### 3️⃣ Execution Output
+
+When you compile and run the program above, it will yield the following result (the parent class method was completely overridden by the child class):
+
+```text
+Dog barks
+```
