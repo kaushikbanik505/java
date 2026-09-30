@@ -33,3 +33,34 @@ Inside the overridden method, you can still call the original parent method usin
   [Back to Table of Contents](./README.md)
 
                                                   DAY/2 🧑‍🏫
+
+ 1) super () is basically used for call the parents class constructor inside child class ...
+
+ 2) for example
+ 3) // parents class -->
+ 4) class santosh ()
+ 5) {
+          private int age ;
+          public santosh( int age )
+    {
+         this.age=age ;
+      }
+       public getage()
+    {
+         return age ;
+    }
+    }
+
+    // now child class -->
+    class kauhsik extents santosh
+    {  private String name ;
+       public santosh ( String name )
+    {
+        super (age) ; // use it 
+        this.name = name ;
+    }
+      public getname()
+    {
+    return name ;}
+    }
+    
