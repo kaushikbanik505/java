@@ -254,3 +254,7 @@ When you compile and run the program above, it will yield the following result (
 Dog barks: Woof Woof!
 Cat meows: Meow Meow!
 ```
+
+                                                                    ##DAY3
+
+                                                                    
