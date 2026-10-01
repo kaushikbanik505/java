@@ -256,7 +256,7 @@ Cat meows: Meow Meow!
 ```
 
                                                                     ##DAY3
-
+                                                  
 
 **Abstraction: Hiding Complexity with Contracts** 
 This requires the final OOP pillar: **Abstraction**.
@@ -307,16 +307,3 @@ public class Main {
 ```text
 Dog barks
 ```
-
-
-// Main Class to run the code
-public class Main {
-    public static void main(String[] args) {
-        // You cannot create an object of an abstract class like: new Animal();
-        
-        Animal myDog = new Dog(); // Using abstraction to refer to the object
-        myDog.makeSound(); 
-    }
-}
- 
-                                                                    
