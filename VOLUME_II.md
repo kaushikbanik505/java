@@ -523,3 +523,4 @@ WagonR is safe
 
 6) ⭐ Failing to implement any interface method inside a concrete subclass results in a compilation failure.
 
+# for further decode use the file VoyexaApp4.java
