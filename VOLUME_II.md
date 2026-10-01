@@ -455,5 +455,71 @@ WagonR is driving
 
 6) ⭐ The concrete child class provides the actual logic inside its own method block to fulfill the parent contract.
 
+# Interfaces in Java: Designing Clean Contracts
+
+--> An interface is not a class. It is a special, pure architectural tool that acts as a strict contract, defining capabilities without any concrete implementation. It provides a cleaner and more structured approach when designing application systems.
+
+* **Implicit Modifiers:** Every method declared inside an interface is implicitly `public` and `abstract` by default. You do not need to explicitly write these keywords.
+* **Fulfilling the Contract:** Since an interface only declares method signatures, the actual implementation logic must be provided later inside a concrete class using the `implements` keyword.
+
+4) ⭐ An interface is not a class; it is a structural contract where all methods are implicitly public and abstract by default.
+
+5. for example ----> `class WagonR implements Car { ... }`
+
+6) ⭐ Interfaces offer a cleaner design architecture by separating the definition of actions from their actual implementation.
+
 7.
+
+# Implementation Example: Fulfilling the Interface Contract
+
+A concrete class must implement all the methods declared by the interface. It overrides the signatures to provide the operational rules for that specific object type.
+
+### 📝 Source Code
+
+```java
+// Look, an interface is not a class, but what is written inside an interface is public abstract by default.
+// Using an interface gives us a better structure when it comes to designing something.
+// It is not a class; all it does is hold the functions and allows us to implement them in later stages
+// inside a class using (class A implements interface-name)
+interface Car {
+    // I'm defining the functions here but implementing them later --->
+    void drive();
+    void safety();
+}
+
+class WagonR implements Car {
+    @Override
+    public void drive() {
+        System.out.println("WagonR is driving");
+    }
+
+    @Override
+    public void safety() {
+        System.out.println("WagonR is safe");
+    }
+}
+
+public class InterfaceImplement {
+    public static void main(String[] args) {
+        WagonR obj = new WagonR();
+        obj.drive();
+        obj.safety();
+    }
+}
+```
+
+---
+
+### 3️⃣ Execution Output
+
+When you compile and run the program above, it will yield the following result:
+
+```text
+WagonR is driving
+WagonR is safe
+```
+
+4) ⭐ Concrete classes use the `implements` keyword to commit to an interface and must provide public definitions for all its methods.
+
+6) ⭐ Failing to implement any interface method inside a concrete subclass results in a compilation failure.
 
