@@ -178,3 +178,139 @@ When you compile and run the program above, it will yield the following result (
 ```text
 Dog barks
 ```
+
+
+# OOP Pillars: Code Reusability and Polymorphism
+
+--> Polymorphism allows the **reuse of code blocks** seamlessly. By writing generic code tailored to a parent class, you can instantly make it work with any present or future child classes without rewriting any logic.
+
+1. Polymorphism means **"many forms"**, allowing one reference variable to take different shapes.
+
+2. **Upcasting in Action:** We declare a variable using the parent class type but instantiate it using a child class type.
+
+4) <span style="color:#268bd2">⭐ Java handles method calls dynamically based on the actual object type, not the reference type.</span>
+
+5. for example ----> `Animal myDog = new Dog();`
+
+6) <span style="color:#859900">⭐ The ultimate superpower of polymorphism is write-once, run-anywhere flexibility for custom class families.</span>
+
+7. 
+
+# Implementation Example: VoyexaApp2.java
+
+When we create parent references like `Animal myDog` and `Animal myCat`, Java reuses the parent structure while executing the specific child methods at runtime.
+
+The parent reference acts as a flexible interface, allowing clean management of different behaviors through identical method names.
+
+Role: It completely decouples your code logic from hardcoded individual class types, making your architecture highly reusable.
+
+### 📝 Source Code (VoyexaApp2.java)
+
+```java
+// Parent Class
+class Animal {
+    public void makeSound() {
+        System.out.println("Some generic animal sound");
+    }
+}
+
+// Child Class 1
+class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks: Woof Woof!");
+    }
+}
+
+// Child Class 2
+class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows: Meow Meow!");
+    }
+}
+
+// Execution Class
+public class VoyexaApp {
+    public static void main(String[] args) {
+        // Polymorphism: One common parent type holding different child objects
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+
+        // The same method call produces different behaviors based on the object type
+        myDog.makeSound(); 
+        myCat.makeSound(); 
+    }
+}
+```
+
+---
+
+### 3️⃣ Execution Output
+
+When you compile and run the program above, it will yield the following result (the parent reference reuses identical code tracks but calls child behaviors):
+
+```text
+Dog barks: Woof Woof!
+Cat meows: Meow Meow!
+```
+
+                                                                    ##DAY3
+
+                                                                                                    
+
+# Abstraction: Hiding Complexity with Contracts 
+
+--> This requires the final OOP pillar: Abstraction. Abstraction is the principle of hiding complexity and only showing the essential features to the user (or to other developers).
+
+1. Interfaces: The Universal Contract
+2. In Java, we achieve clean abstraction primarily through Interfaces. An interface is a pure contract that defines a set of required public methods but provides zero implementation.
+3. The Contract: We create the Bookable interface, which guarantees any class that implements it will have a specific method.
+
+4) ⭐ Method Defined: The interface dictates: boolean book(int numberOfItems);
+
+5. for example ----> `public class Flight implements Bookable { ... }`
+
+6) ⭐ This abstraction allows your main application logic to be completely decoupled from the internal workings of the Flight or HotelRoom classes.
+
+7. 
+
+# Implementation Example: Fulfilling the Contract
+
+To use the interface, our classes must agree to follow its rules using the implements keyword. Decoupling Logic: Focusing on the "What".
+
+### 📝 Source Code
+
+```java
+// Abstract Parent Class (Hides details, defines the concept)
+abstract class Animal {
+    // Abstract method (does not have a body)
+    public abstract void makeSound();
+}
+
+// Child Class (Provides the actual implementation)
+class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Main Class to run the code
+public class Main {
+    public static void main(String[] args) {
+        // You cannot create an object of an abstract class like: new Animal();
+        
+        Animal myDog = new Dog(); // Using abstraction to refer to the object
+        myDog.makeSound(); 
+    }
+}
+```
+
+---
+
+### 3️⃣ Execution Output
+
+```text
+Dog barks
+```
