@@ -375,3 +375,24 @@ Also, Classes can inherit only one parent class. Hence, if you require a class t
 
 6) ⭐ Break direct circular coupling by enforcing unidirectional dependencies or introducing intermediate interfaces.
 
+
+# Abstract Class vs. Interface: Choosing Your Tool
+
+--> The distinction is crucial for robust OOP design:
+
+| Feature | Abstract Class | Interface |
+| :--- | :--- | :--- |
+| **Core Purpose** | Define a family of objects and share common code (related objects). | Define a contract or capability (unrelated objects can share). |
+| **Implementation** | Can provide partial method implementation (concrete methods) and abstract methods. | Typically provides no method implementation (only signatures or default/static methods). |
+| **Inheritance** | **Single Inheritance:** A class can only extend **one** abstract class. | **Multiple Implementation:** A class can implement **many** interfaces. |
+| **Members** | Can have fields, constructors, and any access modifiers. | Cannot have instance fields or constructors (before Java 8, all members were implicitly public static final). |
+| **Use Case** | Use for **core entities** where you need shared state/methods (e.g., abstract class `TravelItem`). | Use for **capabilities** that can cross entity lines (e.g., `Bookable`, `Priced`, `Schedulable`). |
+
+4) ⭐ A class can extend only one abstract class but can implement multiple interfaces to achieve multiple inheritance of type.
+
+5. for example ----> `abstract class TravelItem { ... }` vs `interface Bookable { ... }`
+
+6) ⭐ Use abstract classes for core, related entities and interfaces for flexible, cross-cutting capabilities.
+
+7. 
+
