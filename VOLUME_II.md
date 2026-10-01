@@ -314,3 +314,64 @@ public class Main {
 ```text
 Dog barks
 ```
+
+# OOP Hierarchy: Building Flexible Systems with Inheritance
+
+Levels of Hierarchy Possible in Java  --> 
+Java allows for virtually unlimited levels of hierarchy through inheritance but inheritance hierarchies (more than 3-4 levels) are generally discouraged 
+
+* **Fragile:** Changes high up the chain can break code everywhere below it.
+* **Complex:** Difficult to trace the source of a method implementation.
+
+Also, Classes can inherit only one parent class. Hence, if you require a class to "inherit" features from multiple entities, you may require interfaces. With interfaces in Java, a class can implement more than one interface.
+
+4) ⭐ Java allows virtually unlimited inheritance levels, but deep hierarchies (more than 3-4 levels) are discouraged.
+
+5. for example ----> `class BusinessFlight extends Flight { ... }`
+
+6) ⭐ Multiple inheritance is achieved using interfaces, as a class can inherit from only one parent class.
+
+7.
+
+# Introducing Inheritance: When and When Not To
+
+--> Inheritance should only be introduced when the "is-a" relationship is logically and structurally sound.
+
+### When to Introduce Inheritance
+* **When there's a Clear "is-a" Relationship:** A `BusinessFlight` is a `Flight`. A `SavingsAccount` is an `Account`.
+* **For Polymorphism:** When you want to treat a group of related objects in a unified way (e.g., calling `item.book()` on both `Flight` and `HotelRoom` if they extend an abstract `TravelItem` class).
+* **To Share Common Code:** When subclasses need to inherit methods and fields from a parent, reducing redundant code.
+
+### When NOT to Introduce Inheritance (Prefer Composition)
+* **The "Has-a" Relationship:** If the relationship is "has-a" instead of "is-a."
+  * **Bad Example:** Making an `Engine` extend a `Car`. A car has an engine, it is not an engine. **Prefer Composition:** The `Car` class should contain an `Engine` object.
+* **Code Reuse is the Only Goal:** If you only need to reuse one or two methods from another class, use **Composition** (pass the object into your class or use its instance) instead of inheriting the entire class structure.
+
+---
+
+# Use "super" Carefully
+
+--> The `super` keyword provides access to the immediate parent class member. Use it deliberately to maintain class contracts:
+
+* **Constructors (super()):** This is essential. Always call the parent's constructor using `super(...)` as the first line in the child's constructor to ensure proper initialization of inherited fields.
+* **Method Overriding (super.methodName()):** Use `super.methodName(...)` to execute the parent's implementation of an overridden method. This is useful when you want to extend the parent's logic, not replace it entirely (e.g., `BusinessFlight` adds a check, then calls `super.bookSeats()`).
+* **Avoid Overuse:** If you find yourself constantly calling super methods, it might be a sign that the inheritance hierarchy is too deep or that the child class is too reliant on the parent's implementation details.
+
+4) ⭐ The `super(...)` call must be the very first line inside a child class constructor.
+
+6) ⭐ Use `super.methodName()` to extend parent logic during method overriding rather than completely replacing it.
+
+---
+
+# Cyclic Dependencies to be Prevented
+
+--> A **Cyclic Dependency** occurs when Class A depends on Class B, and Class B simultaneously depends on Class A.
+
+* **Example:** `Flight` contains a reference to `Airport`, and `Airport` contains a reference back to `Flight`.
+* **Problem:** This tight, circular coupling makes the code very fragile and difficult to test and maintain. If you change Class A, you may have to change Class B, and that change in B might force another change in A.
+* **Best Practice:** Design your classes to follow a **unidirectional dependency** (A depends on B, but B does not depend on A) or use **Interfaces** to break the direct coupling. For example, have a third entity (the `BookingService`) manage the relationships between `Flight` and `Airport`, instead of making them reference each other directly.
+
+4) ⭐ Cyclic dependencies tightly couple classes, making code fragile, hard to test, and difficult to maintain.
+
+6) ⭐ Break direct circular coupling by enforcing unidirectional dependencies or introducing intermediate interfaces.
+
