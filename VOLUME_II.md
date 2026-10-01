@@ -257,4 +257,66 @@ Cat meows: Meow Meow!
 
                                                                     ##DAY3
 
+
+**Abstraction: Hiding Complexity with Contracts** 
+This requires the final OOP pillar: **Abstraction**.
+**Abstraction** is the principle of hiding complexity and only showing the essential features to the user (or to other developers).
+
+1. **Interfaces: The Universal Contract**
+2. In Java, we achieve clean abstraction primarily through **Interfaces**. An interface is a **pure contract** that defines a set of required public methods but provides **zero implementation**.
+3. **The Contract:** We create the **Bookable** interface, which guarantees any class that implements it will have a specific method.
+
+\[{\color{blue}\text{⭐ Method Defined: The interface dictates: boolean book(int numberOfItems);}}\]
+
+2. **Implementation: Fulfilling the Contract**
+To use the interface, our classes must agree to follow its rules using the **implements** keyword.
+
+3. **Decoupling Logic: Focusing on the "What"**
+
+\[{\color{green}\text{⭐ This abstraction allows your main application logic to be completely decoupled}}\]
+\[{\color{green}\text{from the internal workings of the Flight or HotelRoom classes.}}\]
+
+```java
+// Abstract Parent Class (Hides details, defines the concept)
+abstract class Animal {
+    // Abstract method (does not have a body)
+    public abstract void makeSound();
+}
+
+// Child Class (Provides the actual implementation)
+class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Main Class to run the code
+public class Main {
+    public static void main(String[] args) {
+        // You cannot create an object of an abstract class like: new Animal();
+        
+        Animal myDog = new Dog(); // Using abstraction to refer to the object
+        myDog.makeSound(); 
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+Dog barks
+```
+
+
+// Main Class to run the code
+public class Main {
+    public static void main(String[] args) {
+        // You cannot create an object of an abstract class like: new Animal();
+        
+        Animal myDog = new Dog(); // Using abstraction to refer to the object
+        myDog.makeSound(); 
+    }
+}
+ 
                                                                     
