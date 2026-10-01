@@ -395,4 +395,65 @@ Also, Classes can inherit only one parent class. Hence, if you require a class t
 6) ⭐ Use abstract classes for core, related entities and interfaces for flexible, cross-cutting capabilities.
 
 7. 
+# Abstract Classes and Methods: Enforcing Blueprint Rules
+
+--> An abstract class serves as an incomplete template. Its primary purpose is to provide a base structure that other classes can inherit and complete. You cannot instantiate an abstract class directly.
+
+* **Instantiation Restriction:** If a class is declared abstract, you cannot create an object of it using the `new` keyword.
+* **Abstract Methods:** These are method declarations without any implementation body `{}`. They act as placeholders, forcing child classes to provide the actual working logic.
+
+4) ⭐ You cannot create an object of an abstract class directly in the main function using the `new` keyword.
+
+5. for example ----> `abstract class Car { ... }`
+
+6) ⭐ An abstract method has no body and can only exist inside an abstract class, forcing subclasses to implement it.
+
+7.
+
+# Implementation Example: Overriding Abstract Methods
+
+When a child class extends an abstract parent class, it must implement all declared abstract methods to compile successfully. This allows you to define a common operation that behaves differently across child classes.
+
+### 📝 Source Code
+
+```java
+// For an abstract method (function) to implement we need an abstract class
+abstract class Car {
+    // As I use the abstract keyword here, I can implement it later in another class
+    // I may not need to implement the function here, all I need is to call it 
+    // and implement later by using extends then the abstract class name
+    public abstract void drive();
+}
+
+class WagonR extends Car {
+   @override // using this is not necessary but it is a good practise ..
+    public void drive() {
+        System.out.println("WagonR is driving");
+    }
+}
+
+public class AbstractMethod {
+    public static void main(String[] args) {
+        // We cannot make an object of an abstract class like: Car obj = new Car();
+        WagonR obj = new WagonR();
+        obj.drive();
+    }
+}
+```
+
+---
+
+### 3️⃣ Execution Output
+
+When you compile and run the program above, it will yield the following result:
+
+```text
+WagonR is driving
+```
+
+4) ⭐ Subclasses use the `extends` keyword to inherit from an abstract class and must override its abstract methods.
+
+6) ⭐ The concrete child class provides the actual logic inside its own method block to fulfill the parent contract.
+
+7.
 
