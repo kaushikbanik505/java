@@ -17,7 +17,7 @@ The **String Pool** is a memory optimization technique. When you create a string
 * **Existing Value:** If a string with the same value already exists, it doesn't create a new object. Instead, it just **returns a reference** to the existing one. This saves memory. 
 * **Using the `new` Keyword:** However, if you use the `new` keyword, you're explicitly telling the JVM to create a **brand new object in the heap memory**, regardless of whether the value already exists in the String Pool.
 
-\[{\color{blue}\text{⭐ When creating a string literal, the JVM checks the String Pool first to optimize memory allocation.}}\]
+⭐ When creating a string literal, the JVM checks the String Pool first to optimize memory allocation.
 
 ### 📝 Source Code
 
