@@ -458,3 +458,215 @@ The **String Pool** is a perfect implementation of this. Instead of creating a n
 
 
 
+# 🔍 Regular Expressions (Regex)
+
+**Regular Expressions**, or **regex**, are like a special language for describing text patterns. Think of them as a powerful search tool on steroids. 
+
+They are essential for critical operational tasks such as:
+* **Validating user input** (checking email formats, phone numbers, or passwords).
+* **Parsing data fields** from raw text streams.
+* **Finding specific pieces of information** embedded inside a string sequence.
+
+<span style="color:#268bd2">⭐ Using Regex helps you build highly robust input validation layers without writing complex nested loop logic.</span>
+
+<span style="color:#859900">⭐ This pattern-matching capability is perfect for managing the data-rich, dynamic environments within an app like Voyexa.</span>
+
+### The Building Blocks of Regex: Metacharacters and Quantifiers
+
+Regex uses a set of special characters (**metacharacters**) to define patterns, and **quantifiers** to specify how many times a character or pattern should repeat.
+
+#### Metacharacters:
+
+| Metacharacter | Description | Example Pattern | Matches |
+| :--- | :--- | :--- | :--- |
+| `.` | Any character (except newline) | `a.b` | acb, a#b, a5b |
+| `\d` | Any digit (0-9) | `\d\d\d` | 123, 456 |
+| `\s` | Any whitespace character | `trip\sID` | trip ID |
+| `[abc]` | Any one character inside the brackets | `[aeiou]` | a, e, i, o, u |
+| `[^abc]` | Any character **not** inside the brackets | `[^0-9]` | a, B, \$ |
+
+#### Quantifiers:
+
+| Quantifier | Description | Example Pattern | Matches |
+| :--- | :--- | :--- | :--- |
+| `*` | Zero or more occurrences | `ab*c` | ac, abc, abbc |
+| `+` | One or more occurrences | `ab+c` | abc, abbc |
+| `?` | Zero or one occurrence | `colou?r` | color, colour |
+| `{n}` | Exactly n occurrences | `\d{4}` | 1234 |
+| `{n,}` | n or more occurrences | `\d{3,}` | 123, 12345 |
+
+# 🛠️ Applying Regex and String Formatting in Java
+
+---
+
+## 🚀 Applying Regex in Java
+
+Java provides built-in tools to natively validate patterns across text sequences using regular expressions. 
+
+<span style="color:#268bd2">⭐ The `matches()` method evaluates whether the entire target string conforms to the provided expression structure.</span>
+
+### 📝 Source Code
+
+```java
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class regex {
+    // 1. Code must be placed inside a method (like main) to execute
+    public static void main(String[] args) {
+
+        String userEmail = "john.doe@voyexa.com";
+        // A common regex for email validation
+        String emailPattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+
+        boolean isValidEmail = userEmail.matches(emailPattern);
+        System.out.println("Is '" + userEmail + "' a valid email? " + isValidEmail);
+        // Output: Is 'john.doe@voyexa.com' a valid email? true
+
+        String invalidEmail = "john.doe@voyexa"; // Missing .com
+        System.out.println("Is '" + invalidEmail + "' a valid email? " + invalidEmail.matches(emailPattern));
+    } // <-- Added missing closing brace for the main method
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+Is 'john.doe@voyexa.com' a valid email? true
+Is 'john.doe@voyexa' a valid email? false
+```
+
+---
+
+## ✂️ Splitting and Parsing Data with `split()`
+
+<span style="color:#859900">⭐ Using comma-separated regex tokens like `,\\s*` completely safely strips whitespace variants during complex token extractions.</span>
+
+### 📝 Source Code
+
+```java
+public class spiliting {
+
+    // 1. Statements must be placed inside a method to execute
+    public static void main(String[] args) {
+
+        String flightInfo = "Flight: VXE101, Origin: New York, Destination: London";
+        String[] details = flightInfo.split(",\\s*");
+
+        System.out.println("--- Parsed Flight Details ---");
+        for (String detail : details) {
+            System.out.println(" - " + detail);
+        }
+
+    } // <-- Added missing closing brace for the main method
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+--- Parsed Flight Details ---
+ - Flight: VXE101
+ - Origin: New York
+ - Destination: London
+```
+
+---
+
+## 🔄 Replacing Text with `replaceAll()`
+
+`String.replaceAll()` uses regex to find all matches of a pattern and replace them with a new string. Let's sanitize a user's review by removing any special characters.
+
+<span style="color:#268bd2">⭐ The pattern `[^a-zA-Z0-9\\s]` isolates and discards noisy structural symbols while securely preserving literal characters and spaces.</span>
+
+### 📝 Source Code
+
+```java
+public class replace {
+    public static void main(String[] args) {
+        String userReview = "I enjoyed the trip! The hotel was great! (Booking ID: #VXE-567)";
+
+        // Replace all non-alphanumeric characters (except spaces) with an empty string
+        String cleanReview = userReview.replaceAll("[^a-zA-Z0-9\\s]", "");
+
+        System.out.println("Original Review: " + userReview);
+        System.out.println("Cleaned Review: " + cleanReview);
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+Original Review: I enjoyed the trip! The hotel was great! (Booking ID: #VXE-567)
+Cleaned Review: I enjoyed the trip The hotel was great Booking ID VXE567
+```
+
+---
+
+## 📊 Formatting Strings
+
+Formatting strings makes your output cleaner and easier to read. Instead of just concatenating data with `+`, which can get messy and error-prone, Java provides tools to create well-structured text by "plugging in" data at specific points. Think of it like filling out a pre-made form.
+
+### 🧰 The Tools: `String.format()` and `printf()`
+* **`String.format()`**: This method creates and returns a new formatted string. It's useful when you want to store the formatted text in a variable or use it elsewhere.
+* **`System.out.printf()`**: This method is a shortcut that prints the formatted string directly to the console. The "f" in `printf` stands for "formatted."
+
+### 🔑 Key Format Specifiers
+These are the most common placeholders you'll use:
+* **`%s`**: For strings 
+* **`%d`**: For integers 
+* **`%f`**: For floating-point numbers (like decimals)
+* **`%n`**: A platform-independent newline character (like `\n`)
+
+### 📝 Source Code
+
+```java
+public class formatingstringpractise {
+    public static void main(String[] args) {
+        String flightNumber = "VXE202";
+        int availableSeats = 15;
+        double price = 450.75;
+
+        System.out.printf("Flight: %s | Available Seats: %d | Price: $%.2f%n",
+                flightNumber, availableSeats, price);
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+Flight: VXE202 | Available Seats: 15 | Price: $450.75
+```
+
+---
+
+## ✉️ `String.format()` for a Booking Confirmation
+
+<span style="color:#859900">⭐ Bundling dynamic contextual tokens via `String.format()` guarantees clean layout tracking without complex concatenation strings.</span>
+
+### 📝 Source Code
+
+```java
+public class formatingstringpractise {
+    public static void main(String[] args) { // Fixed execution structural context wrapper block
+
+        String customerName = "Jane Doe";
+        String bookingId = "BKG-987";
+        String destination = "Paris";
+        String bookingMessage = String.format("Dear %s, your trip to %s has been confirmed. Your booking ID is %s.",
+                customerName, destination, bookingId);
+
+        System.out.println(bookingMessage);
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+Dear Jane Doe, your trip to Paris has been confirmed. Your booking ID is BKG-987.
+```
+
+
