@@ -338,3 +338,93 @@ Flight Code: VXE101
 Origin: New York
 Destination: London
 ```
+                                                                      ##DAY2
+
+ # ⚙️ Modifying Sequences Efficiently: StringBuilder and StringBuffer
+
+Java provides two mutable string classes to modify character sequences without generating excessive garbage memory overhead: **`StringBuilder`** and **`StringBuffer`**.
+
+---
+
+## 1. StringBuilder: The High-Performance Builder
+
+* **Best for:** Single-threaded environments (most common use cases).
+* **Key Feature:** It is **not synchronized**, meaning it doesn't have built-in safety for multi-threaded access. This lack of overhead makes it the most performant choice for building strings in a single process.
+
+<span style="color:#268bd2">⭐ Using the fully qualified package name `java.lang.StringBuilder` prevents compilation issues when your custom class shares the exact same name.</span>
+
+### 📝 Source Code
+
+```java
+public class StringBuilder {
+    public static void main(String[] args) {
+        // Use the fully qualified name to avoid naming conflict with the class name
+        java.lang.StringBuilder itineraryBuilder = new java.lang.StringBuilder();
+
+        // Append details one by one without creating new objects
+        itineraryBuilder.append("--- Your Voyexa Trip Itinerary ---\n");
+        itineraryBuilder.append("Flight: VXE101 to London\n");
+        itineraryBuilder.append("Hotel: Hilton London\n");
+        itineraryBuilder.append("Car Rental: Economy Class\n");
+        itineraryBuilder.append("Total Price: $1250\n");
+
+        // Convert the StringBuilder object to a final, immutable String for display
+        String finalItinerary = itineraryBuilder.toString();
+        System.out.println(finalItinerary);
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+--- Your Voyexa Trip Itinerary ---
+Flight: VXE101 to London
+Hotel: Hilton London
+Car Rental: Economy Class
+Total Price: $1250
+```
+
+### 🔍 Deep Dive: Step-by-Step Breakdown
+
+In this example, `append()` modifies the `itineraryBuilder` object directly, reusing the same memory space. Only at the very end, when we call `toString()`, is the final, complete String object created.
+
+---
+
+## 2. StringBuffer: The Thread-Safe Builder
+
+* **Best for:** Multi-threaded environments.
+* **Key Feature:** It is **thread-safe and synchronized**. This means multiple threads can't access the same `StringBuffer` object at the same time, preventing data corruption. 
+
+<span style="color:#859900">⭐ While thread safety is crucial for concurrent applications, synchronization adds a slight performance cost, making it a bit slower than `StringBuilder`.</span>
+
+### 📝 Source Code
+
+```java
+public class StringBuilder {
+    public static void main(String[] args) {
+      
+        java.lang.StringBuffer transactionLog = new java.lang.StringBuffer();
+
+        // Thread 1 logs a successful payment
+        transactionLog.append("SUCCESS: Payment processed for booking #BKG-005.\n");
+
+        // Thread 2 logs a flight confirmation
+        transactionLog.append("CONFIRM: Ticket issued for flight VXE101.\n");
+
+        // The output would be correctly ordered in a thread-safe way
+        System.out.println(transactionLog.toString());
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+SUCCESS: Payment processed for booking #BKG-005.
+CONFIRM: Ticket issued for flight VXE101.
+```
+
+
+
+
