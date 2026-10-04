@@ -443,6 +443,18 @@ The **String Pool** is a perfect implementation of this. Instead of creating a n
 * **Inherently Thread-Safe:** Multiple asynchronous threads can confidently read the exact same string references without synchronization overhead.
 
 
- 
+ # 4. String, StringBuilder, and StringBuffer Comparison
+
+---
+
+| Feature | String | StringBuilder | StringBuffer |
+| :--- | :--- | :--- | :--- |
+| **Mutability** | **Immutable** (Cannot be changed after creation) | **Mutable** (Can be changed/modified) | **Mutable** (Can be changed/modified) |
+| **Thread-Safety** | **Thread-safe** (Implicitly, due to immutability) | **Not Thread-safe** | **Thread-safe** (Methods are synchronized) |
+| **Synchronization** | None | None | **Synchronized** (All public methods are synchronized) |
+| **Performance** | **Slow** (Concatenation creates new objects) | **Fastest** (Most efficient for modification) | **Slower than StringBuilder** (Overhead of synchronization) |
+| **Use Case** | Ideal for **constant, read-only** strings or when thread-safety is paramount. | Ideal for **single-threaded** environments where strings need **frequent modification** (e.g., in a loop). | Ideal for **multi-threaded** environments where strings need **frequent modification** and **thread-safety is required**. |
+| **Storage** | Stored in the **String Pool** (for literals) or **Heap**. | Stored in the **Heap**. | Stored in the **Heap**. |
+
 
 
