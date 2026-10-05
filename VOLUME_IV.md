@@ -4,9 +4,20 @@
 
 ### 🛠️ The Core Developer Trio
 
-* **`import java.io.*;`** ── Grants access to all input/output utilities, buffers, streams, and file writers.
-* **`import java.util.*;`** ── Grants access to collection data frameworks (`ArrayList`, `HashMap`) and parsing utilities (`Scanner`).
-* **`import java.net.*;`** ── Grants access to network socket connections, network channels, and web address formatting protocols.
+* **Input/Output Utilities:** Grants access to all streams, buffers, file readers, and file writers.
+```java
+import java.io.*;
+```
+
+* **Collection Data Frameworks:** Grants access to standard data frameworks (`ArrayList`, `HashMap`) and data parsing tools (`Scanner`).
+```java
+import java.util.*;
+```
+
+* **Network Connection Protocols:** Grants access to network socket pathways, servers, channels, and web address formatting protocols.
+```java
+import java.net.*;
+```
 
 # 🛡️ Exception Handling: Safeguarding the Application Flow
 
