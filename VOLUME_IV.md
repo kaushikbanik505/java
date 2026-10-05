@@ -1,6 +1,12 @@
                                                                    ##DAY1
 
-[Back to Table of Contents](./README.md)                                                                    
+[Back to Table of Contents](./README.md)        
+
+### 🛠️ The Core Developer Trio
+
+* **`import java.io.*;`** ── Grants access to all input/output utilities, buffers, streams, and file writers.
+* **`import java.util.*;`** ── Grants access to collection data frameworks (`ArrayList`, `HashMap`) and parsing utilities (`Scanner`).
+* **`import java.net.*;`** ── Grants access to network socket connections, network channels, and web address formatting protocols.
 
 # 🛡️ Exception Handling: Safeguarding the Application Flow
 
@@ -76,4 +82,80 @@ Enter the number of seats to book: four
 Error: That's not a valid number!
 Please enter a numerical value for the seats.
 Booking process concluded.
+```
+
+# 📇 Two Faces of Exceptions: Checked vs Unchecked
+
+Java splits exceptions into two core categories depending on whether the compiler forces you to handle them upfront or if they represent structural logical mistakes.
+
+---
+
+## 1. Checked Exceptions: The Expected Problems
+
+These are like warning signs you must address. The Java compiler forces you to either catch them or throw them from your method's signature. They represent predictable external problems, like a file not being found (`IOException`). You are expected to handle them because they are not your fault—they are external to the program itself.
+
+*📌 **Example:** Handling a Missing Flight Data File*
+
+<span style="color:#268bd2">⭐ Checked exceptions represent errors that a well-written application should anticipate and recover from safely at runtime.</span>
+
+### 📝 Source Code
+
+```java
+import java.io.FileReader;
+import java.io.IOException;
+
+class FlightDataProcessor {
+
+    public void loadFlightSchedule() {
+        try {
+            // The compiler forces us to handle this potential exception
+            FileReader fileReader = new FileReader("flights.txt");
+            System.out.println("Reading flight data...");
+        } catch (IOException e) {
+            // We must catch and handle the exception
+            System.err.println("Error: Could not find or read the flight data file.");
+            System.err.println("Please contact support or try again later.");
+        }
+    }
+}
+
+// REMOVED "public" here so it compiles safely inside ANY file name (like
+// tempCodeRunnerFile.java)
+public class exceptionhandling1 {
+    public static void main(String[] args) {
+        FlightDataProcessor processor = new FlightDataProcessor();
+        processor.loadFlightSchedule();
+    }
+}
+```
+
+---
+
+## 2. Unchecked Exceptions: The Surprise Bugs
+
+Imagine the Voyexa app has an array of booking IDs, and your code tries to access an index that doesn't exist. This is a logic error and an unchecked exception (`ArrayIndexOutOfBoundsException`).
+
+<span style="color:#859900">⭐ Unchecked exceptions typically reflect programming flaws or flawed calculation paths that should be resolved by fixing the code rather than merely catching errors.</span>
+
+### 📝 Source Code
+
+```java
+public class exceptionhandling2 {
+    public static void main(String[] args) {
+        String[] bookingIds = { "VXE101", "VXE102", "VXE103" };
+
+        // This line is a programming mistake. The valid indices are 0, 1, 2.
+        try {
+            System.out.println("Booking ID: " + bookingIds[3]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.err.println("Error: Invalid booking ID index.");
+        }
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+Error: Invalid booking ID index.
 ```
