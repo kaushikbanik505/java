@@ -524,3 +524,14 @@ public class BookingService {
 3. `3. Inside catch: Trapped the low-level SQLException.`
 4. `4. Inside finally: Safely tearing down database connections.`
 5. *(The runtime environment then halts execution or hands off the custom `KaushikException` to the upstream caller)*
+
+
+# Task 3: Identifying Exception Type (Concept Check)
+
+The goal of this task is to identify the best action for different error types. For each scenario, state whether it is a **Checked** or **Unchecked** exception and what the developer's best practice response should be.
+
+| Scenario | Exception Type (Checked/Unchecked) | Best Practice |
+| :--- | :--- | :--- |
+| **Attempting to connect to a server that is offline.** | **Checked** (e.g., `UnknownHostException` / `IOException`) | **Catch or Declare (throws):** This is recoverable; the developer must anticipate it and provide a user-friendly recovery mechanism (e.g., retry button, offline message). |
+| **Forgetting to initialize a String object before calling a method on it (`NullPointerException`).** | **Unchecked** (Runtime) | **Fix the Code:** This is a programmer error. The best practice is to fix the underlying bug (initialize the variable, add null checks) rather than relying on a try-catch block. |
+| **Attempting to create a file, but the disk is full (`IOException`).** | **Checked** | **Catch or Declare (throws):** This is external to the code's logic and recoverable. The developer should catch it and handle the situation gracefully (e.g., clear disk space, inform user). |
