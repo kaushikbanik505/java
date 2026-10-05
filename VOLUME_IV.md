@@ -535,3 +535,68 @@ The goal of this task is to identify the best action for different error types. 
 | **Attempting to connect to a server that is offline.** | **Checked** (e.g., `UnknownHostException` / `IOException`) | **Catch or Declare (throws):** This is recoverable; the developer must anticipate it and provide a user-friendly recovery mechanism (e.g., retry button, offline message). |
 | **Forgetting to initialize a String object before calling a method on it (`NullPointerException`).** | **Unchecked** (Runtime) | **Fix the Code:** This is a programmer error. The best practice is to fix the underlying bug (initialize the variable, add null checks) rather than relying on a try-catch block. |
 | **Attempting to create a file, but the disk is full (`IOException`).** | **Checked** | **Catch or Declare (throws):** This is external to the code's logic and recoverable. The developer should catch it and handle the situation gracefully (e.g., clear disk space, inform user). |
+
+# Volume 2: Java Exception Types Hierarchy
+
+In Java, exceptions are broadly categorized into two major types: **Checked Exceptions** and **Unchecked Exceptions** (commonly known as **Runtime Exceptions**). Understanding the distinction between them is crucial for writing robust, error-tolerant software.
+
+---
+
+## 🏛️ The Core Dichotomy
+
+```
+                   ┌───────────┐
+                   │ Throwable │
+                   └─────┬─────┘
+                         │
+             ┌───────────┴───────────┐
+             │                       │
+       ┌─────▼─────┐           ┌─────▼─────┐
+       │   Error   │           │ Exception │
+       └───────────┘           └─────┬─────┘
+                                     │
+                         ┌───────────┴───────────┐
+                         │                       │
+                   ┌─────▼─────┐           ┌─────▼─────┐
+                   │  Checked  │           │ Unchecked │
+                   │ Exceptions│           │(Runtime)  │
+                   └───────────┘           └───────────┘
+```
+
+| Feature | Checked Exceptions | Unchecked (Runtime) Exceptions |
+| :--- | :--- | :--- |
+| **Compiler Enforcement** | **Mandatory.** The compiler forces you to handle or declare them. | **Optional.** The compiler does not track or force management of these. |
+| **Direct Parent Class** | Inherits directly from `java.lang.Exception`. | Inherits from `java.lang.RuntimeException`. |
+| **Primary Cause** | External environmental factors outside the program's absolute control. | Programming bugs, logical oversights, or improper API usage. |
+| **Best Practice Recovery** | Catch the failure and implement a fallback or user-friendly resolution. | Fix the underlying program logic to prevent the exception entirely. |
+
+---
+
+## 🛡️ 1. Checked Exceptions
+
+These represent conditions that a well-written application should anticipate and recover from. Because they depend on external systems (like files, networks, or databases), the Java compiler enforces strict verification rules at compile time.
+
+### Classic Examples:
+*   **`IOException`**: Thrown when an input/output operation fails or is interrupted (e.g., trying to read a network stream that abruptly cuts off).
+*   **`FileNotFoundException`**: A subclass of `IOException` triggered when a program attempts to open a local file path that does not exist.
+*   **`SQLException`**: Thrown when an application encounters an error interacting with a database management system (e.g., bad syntax, invalid credentials, or severed connection).
+
+### Handling Obligation:
+You must resolve checked exceptions using one of two approaches:
+1.  **Catching explicitly:** Enclose the hazardous operations inside a structural `try-catch` block.
+2.  **Propagating explicitly:** Append a `throws` clause to your method signature, forcing the calling method to take responsibility.
+
+---
+
+## 🚫 2. Unchecked Exceptions (Runtime Exceptions)
+
+These represent internal errors that usually occur due to flaws in program logic. They bypass compilation-stage tracking because, in theory, code should be structurally corrected to avoid them rather than catching them dynamically.
+
+### Classic Examples:
+*   **`NullPointerException`**: Raised when attempting to access members or invoke methods on an object reference that evaluates to `null`.
+*   **`ArithmeticException`**: Triggered during illegal mathematical operations, most commonly dividing an integer value by zero.
+*   **`ArrayIndexOutOfBoundsException`**: Occurs when your loop or assignment statement attempts to index an array sequence with a negative position or a value greater than or equal to its total length.
+*   **`NumberFormatException`**: A subclass of `IllegalArgumentException` thrown when trying to parse an invalid string sequence (e.g., `"five"`) into a numeric data type.
+
+### Handling Obligation:
+*   **Fix the Source Code:** Do not mask runtime logic bugs behind standard `try-catch` blocks. Instead, introduce structural sanity checks (e.g., `if (object != null)`) or refine algorithms to avoid error boundaries entirely.
