@@ -158,9 +158,113 @@ public class exceptionhandling2 {
     }
 }
 ```
+# 🛠️ Advanced Resource Management and Custom Error Delegation
+
+This module explores modern resource handling using automated pipelines alongside architectural frameworks for declaring and propagating custom business rule exceptions.
+
+---
+
+## 1. The try-with-resources Statement: The Modern Way to Clean Up
+
+Using Java's modern Try-with-Resources infrastructure allows developers to initialize resource connections directly within the execution block declaration, completely eliminating the need for manual `finally` tracking routines.
+
+### 📝 Source Code
+
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class BulkBookingProcessor {
+    public static void main(String[] args) {
+        // The Scanner (a resource) is declared in the try statement's parentheses
+        try (Scanner fileScanner = new Scanner(new File("voyexa_bookings.txt"))) {
+            while (fileScanner.hasNextLine()) {
+                String bookingRequest = fileScanner.nextLine();
+                System.out.println("Processing: " + bookingRequest);
+            }
+        } catch (FileNotFoundException e) {
+            // This catch block handles the exception if the file is not found
+            System.err.println("Error: The booking file could not be found.");
+            System.err.println("Please check the file path and try again.");
+        }
+        // The fileScanner is automatically closed here, no finally block needed!
+    }
+}
+```
+
+### 🔍 Step-by-Step Architecture Matrix
+
+<span style="color:#268bd2">⭐ Declarations managed inside the Try-with-Resources header automatically close upon code context exit, ensuring total defense against resource leaks.</span>
+
+* **`Scanner`**: A built-in reference Class from the `java.util` package that provides methods to read and parse text data.
+* **`fileScanner`**: The Object Reference Variable (the custom name given to your scanner machine instance).
+* **`=`**: The Assignment Operator used to store the newly created scanner object inside the `fileScanner` variable.
+* **`new Scanner(...)`**: A Constructor Call that manufactures and initializes a live Scanner object instance in memory.
+* **`new File("voyexa_bookings.txt")`**: A Virtual Pointer Object that maps out the path and address of the physical file on your disk without actually opening or reading it.
+* **`while (...)`**: A conditional Loop Statement that controls how long the file extraction continues based on a boolean value.
+* **`fileScanner.hasNextLine()`**: A lookahead Boolean Method that checks the text file and returns true if there is another line of data waiting, or false if it hit the end of the file.
+* **`String`**: An immutable object reference Class representing a sequence of text characters.
+* **`bookingRequest`**: A local Variable Name used to temporarily hold the text content extracted from the file.
+* **`fileScanner.nextLine()`**: A Read Method that sweeps the current line of characters out of the file stream, steps down to the next row, and returns the data as text.
+* **`System.out.println(...)`**: A standard Output Print Statement that prints characters out to your console screen.
 
 ### 3️⃣ Execution Output
 
 ```text
 Error: Invalid booking ID index.
+```
+
+---
+
+## 2. Exception Propagation and the throws Keyword: Delegating Responsibility
+
+Not every method is equipped to handle every exception. When a method encounters a checked exception it cannot gracefully recover from, it can delegate the responsibility to its caller. The `throws` keyword in the method's signature is the formal contract that signals this delegation. This process is known as exception propagation.
+
+> 📝 **Definition:** Exception propagation is the process where an exception moves up the call stack from the method where it occurred to a calling method that is capable of handling it.
+
+<span style="color:#859900">⭐ Custom exceptions allow apps to mirror industry-specific constraints directly within compilation error workflows.</span>
+
+### 📝 Source Code
+
+```java
+// Our custom exception class
+class InvalidBookingIdException extends Exception { // Exception is a build in class in java ..
+    public InvalidBookingIdException(String message) {
+        super(message);// The "super" keyword calls the constructor of the parent class (Exception)
+                       // with the provided message
+    }
+}
+
+class BookingValidator {
+    // The "throws" keyword declares that this method can throw this specific
+    // exception
+    public void validateId(String bookingId) throws InvalidBookingIdException {
+        if (!bookingId.startsWith("VOY-")) {
+            // If the condition is met, we "throw" a new exception
+            throw new InvalidBookingIdException("Error: Booking ID must start with 'VOY-'.");
+        }
+        System.out.println("Booking ID " + bookingId + " is valid.");
+    }
+}
+
+// In the main application, we must catch the exception
+public class VoyexaApp5 {
+    public static void main(String[] args) {
+        BookingValidator validator = new BookingValidator();
+        try {
+            validator.validateId("BKG-12345"); // This will throw an exception
+        } catch (InvalidBookingIdException e) {
+            System.err.println(e.getMessage());
+            System.err.println("Please contact support for a valid ID.");
+        }
+    }
+}
+```
+
+### 3️⃣ Execution Output
+
+```text
+Error: Booking ID must start with 'VOY-'.
+Please contact support for a valid ID.
 ```
