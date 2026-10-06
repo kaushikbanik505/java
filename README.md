@@ -12,6 +12,7 @@ Click a volume below to open its dedicated book page:
 | ### 📖 VOLUME II: OBJECT-ORIENTED PARADIGMS | [Open Volume II](./VOLUME_II.md) |
 | ### 📖 VOLUME III: String Handling | [Open Volume III](./VOLUME_III.md) |
 | ### 📖 VOLUME IV: Handling Exception in JAVA | [Open Volume IV](./VOLUME_IV.md) |
+| ### 📖 VOLUME V:JAVA Collections Framework | [Open Volume V](./VOLUME_V.md) |
 
 ---
 
