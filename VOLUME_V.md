@@ -116,3 +116,169 @@ The structural framework relationships shown in your architecture layout illustr
 | **`PriorityQueue`** | Concrete Class | An unbounded priority queue based on a priority heap ordering structure. |
 | **`HashSet`** | Concrete Class | Backed by a hash table. Offers constant time performance for basic operations. |
 | **`TreeSet`** | Concrete Class | A `NavigableSet` implementation backed by a Red-Black Tree layout structure. |
+
+# 📦 Core JCF Implementations: Deep Dive and Real-World Usage
+
+This module explores the core implementation variants across the List, Set, Queue, and Map interfaces, breaking down their underlying data structures and execution rules.
+
+---
+
+## 📜 Key List Implementations
+
+### ArrayList
+* This is the most common List implementation. 
+* It uses a resizable array under the hood: When the existing underlying array becomes full, a newer underlying array replaces it. All the older elements are copied to this new underlying array.
+* `ArrayList` follows a growth factor of 1.5 times (the newer underlying array is 1.5 times longer than the older underlying array).
+* It's lightning-fast for random access (e.g., getting the 5th passenger in the list) but can be slower for insertions or deletions in the middle, as it has to shift all subsequent elements.
+* This is because elements of `ArrayList` are stored in contiguous memory locations (accounting for the underlying array-based implementation).
+
+### LinkedList
+* This implementation uses a doubly-linked list.
+* `LinkedList` internally uses the Node class, whose objects represent the nodes in the doubly-linked list.
+* It’s perfect for scenarios with frequent insertions and deletions at the beginning or end of the list. 
+* Think of it as a linked chain; adding a new link is simple, but finding a specific link in the middle requires traversing the whole chain.
+* Similar to `ArrayList`, `LinkedList` also provides methods for accessing random elements, but it is relatively slower than `ArrayList`.
+* This is because elements of `LinkedList` are stored in non-contiguous memory locations (accounting for the linked list-based implementation).
+
+---
+
+## 🧼 Key Set Implementations
+
+### HashSet
+* The most widely used Set implementation.
+* Uses a `HashMap` internally for a hash-table-based implementation.
+* It's incredibly fast for adding, removing, and checking for elements, but it does not maintain any order.
+
+### LinkedHashSet
+* This version maintains the insertion order of elements. If you add "New York," then "London," they will always appear in that order.
+* Slower than `HashSet` but faster than `TreeSet`.
+
+### TreeSet
+* This implementation stores elements in a sorted order (either their natural order or a custom one). It's slower than `HashSet` but is invaluable when you need sorted data.
+* Implements `SortedSet` and `NavigableSet`, which provides the features of storing elements in sorted order and navigational capabilities.
+* Uses Red-Black-Tree-based implementation.
+
+### 📝 Source Code (setuse.java)
+
+```java
+import java.util.HashSet;
+import java.util.Set;
+
+public class setuse {
+    public static void main(String args[])
+
+    {
+        Set<String> setofcities = new HashSet<>(); // its help us avoid the duplication ...
+        setofcities.add("mumbai");
+        setofcities.add("jalandar");
+        setofcities.add("mumbai"); // this one should get ignored ,,
+        setofcities.add("hyderabad");
+        setofcities.add("delhi");
+        setofcities.add("chennai");
+        setofcities.add("banglore");
+
+        System.out.println("the folowings cities are ---->" + setofcities + "\n");
+
+    }
+
+}
+```
+
+### 3️⃣ Execution Output (setuse)
+```text
+the folowings cities are ---->[delhi, jalandar, hyderabad, banglore, chennai, mumbai]
+```
+*(Note: Because a HashSet does not maintain any order, the positions of cities can shuffle dynamically between different runs)*
+
+---
+
+### 🔍 Why Override equals() and hashCode() in a Set?
+
+When you use custom objects in a Set (like `HashSet` or `LinkedHashSet`), you must override both the `equals()` and `hashCode()` methods to ensure the set behaves correctly, specifically regarding the core Set rule: uniqueness.
+
+A Set uses these two methods to determine if two objects are logically the same and to efficiently store/retrieve them. The default implementations are inherited from the base Object class rely only on the object's memory address.
+
+* **Default equals():** Checks if two object references point to the exact same memory location (`this == other`).
+* **Default hashCode():** Returns a unique integer based on the object's memory address.
+
+<span style="color:#268bd2">⭐ Failing to override equals() and hashCode() for custom class keys within a HashSet will result in duplicate entities leaking into your collection.</span>
+
+---
+
+## ⏳ Key Queue Implementations
+
+### PriorityQueue
+* This queue doesn't follow FIFO strictly; instead, it orders elements based on their priority. 
+* For example, a high-priority customer service request would be handled before a low-priority one, even if it came in later.
+* Uses a Min-Heap-based implementation.
+
+### ArrayDeque
+* A double-ended queue that allows for additions and removals from both the head and the tail. 
+* It can be used as a faster alternative to `LinkedList` for both queues and stacks.
+* Uses a Resizable Circular Array-based implementation.
+
+### 📝 Source Code (queuelearning.java)
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class queuelearning {
+    public static void main(String args[])
+
+    {
+        Queue<String> supportRequests = new LinkedList<>();
+        supportRequests.add("Request for flight change");
+        supportRequests.add("Request for refund");
+
+        System.out.println("Next request to handle: " + supportRequests.peek()); // peek() gets the head without
+                                                                                 // removing
+        System.out.println("Handling request: " + supportRequests.poll()); // poll() gets and removes the head
+
+    }
+}
+```
+
+### 3️⃣ Execution Output (queuelearning)
+```text
+Next request to handle: Request for flight change
+Handling request: Request for flight change
+```
+
+---
+
+## 🗺️ Key Map Implementations
+
+### HashMap
+* Maps keys to values using a hashing mechanism, allowing quick retrieval by matching keys.
+* Does not guarantee any specific iteration order of keys or values.
+
+### 📝 Source Code (hashmap.java)
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class hashmap {
+    public static void main(String args[])
+
+    {
+        Map<Integer, String> customerIdToName = new HashMap<>();
+        customerIdToName.put(101, "John Doe");
+        customerIdToName.put(102, "Jane Smith");
+
+        System.out.println("Customer with ID 101: " + customerIdToName.get(101));
+        System.out.println("Customer with ID 102: " + customerIdToName.get(102));
+        System.out.println("Customer with ID 103: " + customerIdToName.get(103));
+
+    }
+}
+```
+
+### 3️⃣ Execution Output (hashmap)
+```text
+Customer with ID 101: John Doe
+Customer with ID 102: Jane Smith
+Customer with ID 103: null
+```
+*(Note: Attempting to pull key `103` returns `null` because no mapping has been explicitly assigned to it inside the map instance)*
