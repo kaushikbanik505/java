@@ -68,3 +68,51 @@ Flight 3
 Flight 4
 Flight 5
 ```
+
+---
+
+## 🏛️ Core Interfaces of the Framework
+
+The Java Collections Framework (JCF) is built on a set of core interfaces that act as blueprints for different types of data containers. Each interface defines a specific set of rules and behaviors, ensuring consistency across all its implementing classes.
+
+### The Collection Interface (The Root)
+
+The `Collection` interface serves as the foundational root of the entire collection hierarchy in Java. It defines essential methods that every single standard data container must share to ensure uniform manipulation.
+
+<span style="color:#268bd2">⭐ The root blueprint establishes shared method contracts so that moving data between different types of containers requires no syntax rewriting.</span>
+
+#### 🛠️ Essential Core Methods Defined by the Root Contract:
+* **`add(E e)`** ── Inserts a specified element into the active container structure safely.
+* **`remove(Object o)`** ── Pinpoints and removes a single instance of the matching target object from the collection.
+* **`size()`** ── Evaluates the collection layout and returns the precise total count of elements currently held inside.
+* **`contains(Object o)`** ── Executes a high-performance check returning `true` if the target object exists inside the container.
+
+---
+
+## 🌳 The Java Collection Hierarchy Map
+
+The structural framework relationships shown in your architecture layout illustrate the complete hierarchy under the core inheritance tree.
+
+
+---
+
+### 🎨 Architecture Breakdown Matrix
+
+<span style="color:#859900">⭐ solid solid arrows (──►) represent sub-interfaces extending parent interfaces, while dashed arrows (╌╌►) represent concrete classes implementing specific behavioral contracts.</span>
+
+| Core Framework Component | Architectural Node Type | Key Role & Standard Operational Trait |
+| :--- | :--- | :--- |
+| **`Iterable`** | Interface (Top Root) | Allows an object to be the target of the enhanced "for-each" loop track. |
+| **`Collection`** | Interface | Defines the universal basic data mutations (`add`, `remove`, `size`). |
+| **`List`** | Interface | An **ordered collection** that allows positional control and duplicate elements. |
+| **`Queue`** | Interface | Designed for **holding elements prior to processing** (FIFO order). |
+| **`Deque`** | Interface | A double-ended queue supporting element insertion/removal at **both ends**. |
+| **`Set`** | Interface | A collection containing **zero duplicate elements** (models mathematical sets). |
+| **`SortedSet`** | Interface | A `Set` that guarantees its elements are maintained in an **ascending sorted order**. |
+| **`NavigableSet`** | Interface | Extends `SortedSet` with navigation methods (`lower`, `floor`, `ceiling`, `higher`). |
+| **`ArrayList`** | Concrete Class | Resizable-array implementation of the `List` interface. |
+| **`LinkedList`** | Concrete Class | Doubly-linked list implementation. Implements **both** `List` and `Deque` interfaces. |
+| **`ArrayDeque`** | Concrete Class | Resizable-array implementation of the `Deque` interface (Faster than `Stack`). |
+| **`PriorityQueue`** | Concrete Class | An unbounded priority queue based on a priority heap ordering structure. |
+| **`HashSet`** | Concrete Class | Backed by a hash table. Offers constant time performance for basic operations. |
+| **`TreeSet`** | Concrete Class | A `NavigableSet` implementation backed by a Red-Black Tree layout structure. |
