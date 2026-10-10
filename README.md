@@ -3,7 +3,9 @@
 ---
 
 ## 📑 TABLE OF CONTENTS
-##🧑‍💻Java Essentials [E-Learning] Part-1-->
+
+## 🧑‍💻 Java Essentials [E-Learning] Part-1-->
+
 Click a volume below to open its dedicated book page:
 
 | 📚 BOOK SHELF | 📂 DIRECT PATH |
