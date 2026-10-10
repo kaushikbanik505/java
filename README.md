@@ -16,6 +16,7 @@ Click a volume below to open its dedicated book page:
 | ### 📖 VOLUME IV: Handling Exception in JAVA | [Open Volume IV](./VOLUME_IV.md) |
 | ### 📖 VOLUME V:JAVA Collections Framework | [Open Volume V](./VOLUME_V.md) |
 
+## end of chapter 1 :- Java Essentials [E-Learning] Part-1
 ---
 
 $${\color{blue}\text{💡 Reading Tip: Click on "Open Volume" to turn the page to that specific section.}}$$
