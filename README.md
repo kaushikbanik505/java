@@ -22,7 +22,7 @@ Click a volume below to open its dedicated book page:
 ## 🧑‍💻Java Essentials [E-Learning] Part 2 :--->
 | 📚 BOOK SHELF | 📂 DIRECT PATH |
 | :--- | :--- |
-| ### 📖 MODULE I: Generics | [Open MODULE 1]() |
+| ### 📖 MODULE I: Generics | [OPEN MODULE 1](./MODULE_I.md) |
 | ### 📖 VOLUME II: OBJECT-ORIENTED PARADIGMS | [Open Volume II]() |
 | ### 📖 VOLUME III: String Handling | [Open Volume III]() |
 | ### 📖 VOLUME IV: Handling Exception in JAVA | [Open Volume IV]() |
