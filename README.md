@@ -23,9 +23,6 @@ Click a volume below to open its dedicated book page:
 | 📚 BOOK SHELF | 📂 DIRECT PATH |
 | :--- | :--- |
 | ### 📖 MODULE I: Generics | [OPEN MODULE 1](./MODULE_I.md) |
-| ### 📖 VOLUME II: OBJECT-ORIENTED PARADIGMS | [Open Volume II]() |
-| ### 📖 VOLUME III: String Handling | [Open Volume III]() |
-| ### 📖 VOLUME IV: Handling Exception in JAVA | [Open Volume IV]() |
-| ### 📖 VOLUME V:JAVA Collections Framework | [Open Volume V]() |
+
 
 $${\color{blue}\text{💡 Reading Tip: Click on "Open Volume" to turn the page to that specific section.}}$$
