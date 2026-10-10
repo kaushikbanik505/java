@@ -4,7 +4,7 @@
 
 ## 📑 TABLE OF CONTENTS
 
-## 🧑‍💻 Java Essentials [E-Learning] Part-1-->
+## 🧑‍💻 Java Essentials [E-Learning] Part-1 :-->
 
 Click a volume below to open its dedicated book page:
 
@@ -18,9 +18,11 @@ Click a volume below to open its dedicated book page:
 
 ## end of chapter 1 :- Java Essentials [E-Learning] Part-1
 ---
+
+## 🧑‍💻Java Essentials [E-Learning] Part 2 :--->
 | 📚 BOOK SHELF | 📂 DIRECT PATH |
 | :--- | :--- |
-| ### 📖 VOLUME I: FUNDAMENTALS | [Open Volume I]() |
+| ### 📖 VOLUME I: Generics | [Open Volume I]() |
 | ### 📖 VOLUME II: OBJECT-ORIENTED PARADIGMS | [Open Volume II]() |
 | ### 📖 VOLUME III: String Handling | [Open Volume III]() |
 | ### 📖 VOLUME IV: Handling Exception in JAVA | [Open Volume IV]() |
