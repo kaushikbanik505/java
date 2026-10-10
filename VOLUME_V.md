@@ -549,3 +549,158 @@ Exception in thread "main" java.util.ConcurrentModificationException
     at java.base/java.util.ArrayList\$Itr.next(ArrayList.java:967)
     at VoyexaFailFastDemo.main(VoyexaFailFastDemo.java:16)
 ```
+
+                                                                        ##DAY--3
+
+## 🛠️ The Collections & Arrays Utility Classes
+
+This class (note the plural "s") contains static methods that operate on or return a Collection. It's your go-to for tasks like sorting a list, reversing its order, or finding a maximum value.
+
+### 📝 Source Code (CollectionsUtilsDemo.java)
+```java
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+
+public class CollectionsUtilsDemo {
+    public static void main(String[] args) {
+        // Create a list of flight prices
+        List<Integer> prices = new ArrayList<>();
+        prices.add(450);
+        prices.add(200);
+        prices.add(750);
+        prices.add(320);
+
+        System.out.println("Original prices: " + prices);
+
+        // Sort the list of prices in ascending order
+        Collections.sort(prices);
+        System.out.println("Sorted prices: " + prices);
+
+        // Reverse the sorted list
+        Collections.reverse(prices);
+        System.out.println("Prices in descending order: " + prices);
+
+        // Shuffle the list to randomize it
+        Collections.shuffle(prices);
+        System.out.println("Shuffled prices: " + prices);
+    }
+}
+```
+
+### 3️⃣ Execution Output (CollectionsUtilsDemo)
+```text
+Original prices: [450, 200, 750, 320]
+Sorted prices: [200, 320, 450, 750]
+Prices in descending order: [750, 450, 320, 200]
+Shuffled prices: [320, 750, 200, 450]
+```
+*(Note: The shuffled prices array output can vary randomly between separate application runs)*
+
+---
+
+### Arrays Utility Class
+
+### 📝 Source Code (ArraysUtilsDemo.java)
+```java
+import java.util.Arrays;
+import java.util.List;
+
+public class ArraysUtilsDemo {
+    public static void main(String args[]) {
+        // Create an array of strings
+        String[] destinations = { "Paris", "London", "Tokyo" };
+        System.out.println("Original array: " + Arrays.toString(destinations));
+
+        // Use Arrays.asList() to convert the array to a List
+        List<String> destinationList = Arrays.asList(destinations);
+        System.out.println("List from array: " + destinationList);
+
+        // Sort the original array
+        Arrays.sort(destinations);
+        System.out.println("Sorted array: " + Arrays.toString(destinations));
+    }
+}
+```
+
+### 3️⃣ Execution Output (ArraysUtilsDemo)
+```text
+Original array: [Paris, London, Tokyo]
+List from array: [Paris, London, Tokyo]
+Sorted array: [London, Paris, Tokyo]
+```
+
+---
+
+## 🏛️ JCF Design Principles & Guidelines
+
+### 1. Code to the Interface
+This is a core principle of good software design. Instead of declaring a variable with a concrete class (ArrayList), you should use the interface (List). 
+
+* **Rule:** `List<String> myBookings = new ArrayList<>();` is better than `ArrayList<String> myBookings = new ArrayList<>();`. 
+* **Why?** It makes your code flexible. If you later decide that LinkedList is a better fit for performance, you only have to change the constructor. The rest of your code, which relies only on List methods, remains unchanged.
+
+### 2. Choose the Right Collection for the Job
+The Collections Framework offers choices for a reason. Picking the right tool is the single biggest factor in your code's performance and clarity.
+
+* Use **List** when the order of elements is important and you might have duplicates (e.g., a customer's travel history).
+* Use **Set** when you need a group of unique elements and order doesn't matter (e.g., a list of all unique cities Voyexa offers flights to).
+* Use **Map** when you need to store data as key-value pairs for fast retrieval based on a unique key (e.g., mapping a customer ID to their details).
+
+### 3. Consider Performance
+The choice between ArrayList and LinkedList is a classic example.
+
+* Choose **ArrayList** for fast reads and random access.
+* Choose **LinkedList** for fast insertions and deletions in the middle of a list. 
+* Similarly, **HashSet** is generally faster than **TreeSet** for lookups, so use it when sorting is not required.
+
+### 4. Prioritize Clarity over Everything
+Don't use a complex data structure just to show off. 
+
+Always use the most appropriate and readable collection for the job. Clear code is easier to maintain and debug, and that's the most important metric of all.
+
+
+## ⚖️ List Trade-Offs & Sorting Mechanics
+
+Choosing between `ArrayList` and `LinkedList` depends completely on your application's read-to-write ratio. This demonstration maps the exact runtime scenarios for each container along with a verification of the `Collections` sorting utility helper.
+
+### 📝 Source Code (ListTradeOffDemo.java)
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class ListTradeOffDemo {
+    public static void main(String[] args) {
+
+        // Task A: Read Access - ArrayList uses a resizable array, perfect for indexed access.
+        String fastReadChoice = "ArrayList (Fastest for get(index))";
+        System.out.println("\n--- Demo 3: List Trade-Offs & Utilities ---");
+        System.out.println("Read-Heavy Task (e.g., getting booking at index 5): " + fastReadChoice);
+
+        // Task B: Write Access - LinkedList uses nodes, making insertions/deletions at the ends fast.
+        String fastWriteChoice = "LinkedList (Fastest for add(0, item) or remove(0))";
+        System.out.println("Write-Heavy Task (e.g., adding to the start of a queue): " + fastWriteChoice);
+
+        // Task C: Use the Collections Utility Class
+        List<Integer> unsorted = new ArrayList<>(Arrays.asList(9, 2, 5, 1));
+
+        // Use the Collections utility class to sort the list (static helper method)
+        Collections.sort(unsorted);
+
+        System.out.println("Original Unsorted List: [9, 2, 5, 1]");
+        System.out.println("Collections Utility Sort Test: " + unsorted);
+    }
+}
+```
+
+### 3️⃣ Execution Output (ListTradeOffDemo)
+```text
+
+--- Demo 3: List Trade-Offs & Utilities ---
+Read-Heavy Task (e.g., getting booking at index 5): ArrayList (Fastest for get(index))
+Write-Heavy Task (e.g., adding to the start of a queue): LinkedList (Fastest for add(0, item) or remove(0))
+Original Unsorted List: [9, 2, 5, 1]
+Collections Utility Sort Test: [1, 2, 5, 9]
+```
