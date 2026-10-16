@@ -8,7 +8,7 @@
 
 Click a volume below to open its dedicated book page:
 
-| 📚 BOOK SHELF | 📂 DIRECT PATH |
+| 📚 BOOK SHELF | 📂 DIRECT PATH--> |
 | :--- | :--- |
 | ### 📖 VOLUME I: FUNDAMENTALS | [Open Volume I](./VOLUME_I.md) |
 | ### 📖 VOLUME II: OBJECT-ORIENTED PARADIGMS | [Open Volume II](./VOLUME_II.md) |
@@ -20,7 +20,7 @@ Click a volume below to open its dedicated book page:
 ---
 
 ## 🧑‍💻Java Essentials [E-Learning] Part 2 :--->
-| 📚 BOOK SHELF | 📂 DIRECT PATH |
+| 📚 BOOK SHELF | 📂 DIRECT PATH---> |
 | :--- | :--- |
 | ### 📖 MODULE I: Generics | [OPEN MODULE 1](./MODULE_I.md) |
 
