@@ -10,7 +10,7 @@ Instead of relying on a simple, one-size-fits-all approach like a basic array, t
 
 ---
 
-## How to Read the Syntax
+## How to Read the Syntax :-
 
 When you see `List<String> flightList = new ArrayList<>();`:
 
