@@ -264,7 +264,7 @@ Mastering Generics is the key to writing modern, reliable Java code, particularl
 *   **When to use it**: Use it for simple, read-only jobs that don't care about data types, such as checking `list.isEmpty()` or counting `list.size()`.
 
 
-                                                                      ##DAY--->3
+                                                                      ##DAY--->4
 
     # Advanced Generics: Subtyping, Wildcards, and Interfaces
 
