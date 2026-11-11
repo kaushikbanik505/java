@@ -375,3 +375,122 @@ Because the JVM forgets what `T` is at runtime, the following three things are s
 * **Why it exists:** Java kept raw types around for backwards compatibility, so very old code written before Java 5 would not break.
 * **The Rule:** You should never use raw types in modern code because they turn off all safety features and bring back the risk of runtime crashes.
 
+                                                                 ##DAY--3
+
+## Generic Functional Interfaces (Java 8+) and Lambda Inference
+Standard Functional Interfaces: Interfaces like Function<T, R>, Predicate<T>, and Consumer<T> are all generic. They define the types of the input (T) and output (R) data, ensuring that the lambda body operates on the correct types.
+Lambda Type Inference: Generics greatly benefit from Type Inference. When you use a lambda, the compiler can automatically determine the types of the lambda parameters from the generic type of the functional interface, eliminating verbose type declarations.
+
+---
+
+## Best Practices in API Design (Writing Clean, Reusable Libraries)--->
+Prioritize Generics over Object: Never return or accept Object if you can use a type parameter <T> or a bounded wildcard (<? extends T>). Using Object immediately forces the consumer to cast, which is bad API design.
+Use Wildcards for Flexibility (PECS): If your method only reads data (Producer), use <? extends T>. If it only writes data (Consumer), use <? super T>. This maximizes flexibility while maintaining type safety.
+Code to the Interface: Always use generic interfaces in method signatures (e.g., accepting List<T> instead of ArrayList<T>). This prevents locking the consumer into a specific implementation.
+Good API Design (Generic):
+`public <T> T getBookingDetail(List<T> details)` --> Type safety guaranteed and no casting required.
+
+---
+
+## example of lambda expression --->
+
+### 📝 Source Code (lambdaexpression.java)
+```java
+interface A {
+    void show();
+}
+
+public class lambdaexpression {
+    public static void main(String[] args) {
+
+        A obj = () -> // this -> is called the lambda expression
+        {
+            System.out.println("hello lambda expression");
+
+        };
+
+        obj.show();
+
+    }
+}
+```
+
+### 3️⃣ Execution Output (lambdaexpression)
+```text
+hello lambda expression
+```
+
+---
+
+## incase using more than one interface --->
+
+### 📝 Source Code (lambdaexpression2.java)
+```java
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+@FunctionalInterface
+interface A {
+    void show(String s);
+
+}
+
+@FunctionalInterface // for use more than one interface ..
+interface B {
+    void intiger(int i);
+}
+
+public class lambdaexpression2 {
+    public static void main(String[] args) {
+        A obj = (String str) -> {
+            System.out.println(str);
+        };// ; here is important for lenbda expression ;;
+        obj.show("kaushik");
+        B obj2 = (int intiger_value) -> {
+            System.out.println(intiger_value);
+        };
+
+        obj2.intiger(8);
+    }
+}
+```
+
+### 3️⃣ Execution Output (lambdaexpression2)
+```text
+kaushik
+8
+```
+
+---
+
+## return type lambda expression --->
+
+### 📝 Source Code (lambdaexpression3.java)
+```java
+interface A {
+    int add(int i, int j);
+}
+
+public class lambdaexpression3 {
+    static public void main(String args[]) {
+
+        A obj = (i, j) -> i + j; // return type 
+
+        // or 
+//  A obj = (i, j) ->
+//  {
+//     return (i+j);
+//  }
+
+
+        int result = obj.add(10, 21);
+        System.out.println(result);
+    }
+}
+```
+
+### 3️⃣ Execution Output (lambdaexpression3)
+```text
+31
+```
