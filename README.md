@@ -23,7 +23,7 @@ Click a volume below to open its dedicated book page:
 | 📚 BOOK SHELF | 📂 DIRECT PATH---> |
 | :--- | :--- |
 | ### 📖 MODULE I: Generics | [OPEN MODULE 1](./MODULE_I.md) |
-| ### 📖 MODULE II: MultiThreading | [OPEN MODULE 1](./MODULE_II.md) |
+| ### 📖 MODULE II: MultiThreading | [OPEN MODULE 2](./MODULE_II.md) |
 
 
 
