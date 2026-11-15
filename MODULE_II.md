@@ -111,3 +111,4 @@ The problem arises because simple operations like `count = count + 1` are not ex
 1. **Read:** Read the current value of count from memory into a register/cache.
 2. **Modify:** Increment the value in the register/cache.
 3. **Write:** Write the new value back to main memory.
+
